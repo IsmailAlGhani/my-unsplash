@@ -1,0 +1,32 @@
+.column-base {
+  column-count: 1;
+}
+
+@media screen and (min-width: 418px) {
+  .column-base {
+    column-count: 2;
+  }
+}
+
+@media screen and (min-width: 632px) {
+  .column-base {
+    column-count: 3;
+  }
+}
+
+@media screen and (min-width: 845px) {
+  .column-base {
+    column-count: 4;
+  }
+}
+
+@media screen and (min-width: 1060px) {
+  .column-base {
+    column-count: 5;
+  }
+}
+
+.card-wrapper {
+  margin-bottom: 1rem;
+  display: flex;
+}
