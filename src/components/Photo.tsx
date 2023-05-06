@@ -21,7 +21,7 @@ const Photo: FC<PhotoProps> = ({ item, like = false, handleLike }) => {
         width={200}
         src={item.urls.thumb}
         preview={{
-          src: item.urls.full,
+          src: item.urls.regular,
         }}
       />
       <div className="like-wrapper" onClick={() => handleLike(item.id)}>
