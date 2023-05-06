@@ -128,6 +128,7 @@ const App = () => {
                   dataLength={data.length}
                   next={handleFetchImages}
                   hasMore={true}
+                  scrollThreshold={0.95}
                   loader={<Spin />}
                 >
                   <div className="column-base">
