@@ -34,6 +34,7 @@ const App = () => {
   const [page, setPage] = useState<number>(1);
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [fetchMore, setFetchMore] = useState<boolean>(true);
 
   const [data, setData] = useState<Basic[]>([]);
   const [likes, setLikes] = useState<string[]>([]);
@@ -62,6 +63,7 @@ const App = () => {
             });
           } else {
             const dataResult = idx(result, (_) => _.response.results) || [];
+            setFetchMore(dataResult.length !== 0);
             const tempData = unionBy(dataResult, data, "id");
             setData(tempData);
             setPage((prevState) => prevState + 1);
@@ -81,6 +83,7 @@ const App = () => {
             });
           } else {
             const dataResult = idx(result, (_) => _.response.results) || [];
+            setFetchMore(dataResult.length !== 0);
             const tempData = unionBy(dataResult, data, "id");
             setData(tempData);
             setPage((prevState) => prevState + 1);
@@ -107,8 +110,11 @@ const App = () => {
 
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Content>
-        <Row justify={"center"} style={{ paddingTop: "4rem" }}>
+      <Content style={{ minHeight: "100vh" }}>
+        <Row
+          justify={"center"}
+          style={{ paddingTop: "4rem", minHeight: "100vh" }}
+        >
           <Space direction="vertical" size={"large"} style={{ width: "100%" }}>
             <Row justify={"center"}>
               <Title level={3}>My Unsplash</Title>
@@ -127,7 +133,7 @@ const App = () => {
                 <InfiniteScroll
                   dataLength={data.length}
                   next={handleFetchImages}
-                  hasMore={true}
+                  hasMore={fetchMore}
                   scrollThreshold={0.9}
                   loader={<Spin />}
                 >
